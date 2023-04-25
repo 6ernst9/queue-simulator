@@ -1,4 +1,7 @@
-package org.example.model;
+package org.example.strategy;
+
+import org.example.model.Client;
+import org.example.model.Server;
 
 import java.util.List;
 

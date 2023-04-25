@@ -1,18 +1,25 @@
 package org.example.model;
 
 public class Client {
-    private final int id;
+    private final int ID;
+    private static int globalId=1;
     private final int arrivalTime;
-    private final int serviceTime;
+    private int serviceTime;
+    private int waitTime;
 
-    public Client(int id, int arrivalTime, int serviceTime) {
-        this.id = id;
+    public Client(int arrivalTime, int serviceTime) {
+        this.ID = globalId;
+        globalId++;
         this.arrivalTime = arrivalTime;
         this.serviceTime = serviceTime;
     }
 
     public int getId() {
-        return id;
+        return ID;
+    }
+
+    public void setWaitTime(int waitTime){
+        this.waitTime = waitTime;
     }
 
     public int getArrivalTime() {
@@ -23,8 +30,16 @@ public class Client {
         return serviceTime;
     }
 
+    public void setServiceTime(int time){
+        this.serviceTime = time;
+    }
+
+    public int getWaitTime(){
+        return waitTime;
+    }
+
     @Override
     public String toString() {
-        return "(" + id + ", " + arrivalTime + ", " + serviceTime + ")";
+        return "(" + ID + ", " + arrivalTime + ", " + serviceTime + "); ";
     }
 }

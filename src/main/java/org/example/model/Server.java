@@ -1,4 +1,5 @@
 package org.example.model;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -23,7 +24,6 @@ public class Server implements Runnable {
                 }
                 coada.poll();
                 waitTime.addAndGet(-time);
-
             }
         }
     }
@@ -32,19 +32,20 @@ public class Server implements Runnable {
         waitTime.addAndGet(client.getServiceTime());
     }
 
-    public Client[] getClient(){
-        return coada.toArray(new Client[coada.size()]);
+    public List<Client> getClient(){
+        return coada.stream().toList();
     }
 
     public int getNumOfClients() {
         return coada.size();
     }
 
+    public BlockingQueue<Client> getCoada() {
+        return coada;
+    }
+
     public int getWaitTime(){
         return waitTime.get();
     }
 
-    public void delete(){
-        coada.clear();
-    }
 }
